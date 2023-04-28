@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: ReferenceImageLibrary
+  m_EditorClassIdentifier: 
+  m_GuidLow: 5128191505345670491
+  m_GuidHigh: 13862315011890037888
+  m_DataStore:
+    m_Storage: []
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 5229927715985748241
+      m_GuidHigh: 18045173459107016109
+    m_SerializedTextureGuid:
+      m_GuidLow: 4266105267485766217
+      m_GuidHigh: 2938929680940905849
+    m_Size: {x: 0.18, y: 0.18}
+    m_SpecifySize: 1
+    m_Name: Snare
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5393959294749024163
+      m_GuidHigh: 5974607792722270092
+    m_SerializedTextureGuid:
+      m_GuidLow: 16858185257762213608
+      m_GuidHigh: 6126504920227821243
+    m_Size: {x: 0.16, y: 0.16}
+    m_SpecifySize: 1
+    m_Name: Tom2
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5634049020390389850
+      m_GuidHigh: 13015566310911827607
+    m_SerializedTextureGuid:
+      m_GuidLow: 5928026979017563084
+      m_GuidHigh: 12085592640863950921
+    m_Size: {x: 0.17, y: 0.17}
+    m_SpecifySize: 1
+    m_Name: Tom1
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4732081566620544231
+      m_GuidHigh: 5874483276681933964
+    m_SerializedTextureGuid:
+      m_GuidLow: 6229631126221973939
+      m_GuidHigh: 7608450503091464424
+    m_Size: {x: 0.17, y: 0.17}
+    m_SpecifySize: 1
+    m_Name: Hats
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4981835045065007077
+      m_GuidHigh: 7652080179676337045
+    m_SerializedTextureGuid:
+      m_GuidLow: 8080724977527348926
+      m_GuidHigh: 13278414969378639449
+    m_Size: {x: 0.17, y: 0.17}
+    m_SpecifySize: 1
+    m_Name: Floor Tom
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5548327867721312972
+      m_GuidHigh: 3035154941914898345
+    m_SerializedTextureGuid:
+      m_GuidLow: 9175190626518913775
+      m_GuidHigh: 307139419038014185
+    m_Size: {x: 0.18, y: 0.18}
+    m_SpecifySize: 1
+    m_Name: Bass Drum
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5114732627137363728
+      m_GuidHigh: 11645588774582739090
+    m_SerializedTextureGuid:
+      m_GuidLow: 12651836007223682287
+      m_GuidHigh: 4164105246616847929
+    m_Size: {x: 0.16, y: 0.16}
+    m_SpecifySize: 1
+    m_Name: Crash
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5279384420551754479
+      m_GuidHigh: 11289764548591751567
+    m_SerializedTextureGuid:
+      m_GuidLow: 7247484066457466571
+      m_GuidHigh: 8571845644735225993
+    m_Size: {x: 0.18, y: 0.18}
+    m_SpecifySize: 1
+    m_Name: Full Kit
+    m_Texture: {fileID: 0}
