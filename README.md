@@ -1,5 +1,5 @@
 # AR_Drumkit
-Final project for Augmented Reality module in Trinity College Dublin. \
+Final project for Augmented Reality module. \
 Drum kit viewable on a phone
 
 Developed an augmented reality (AR) platform on Unity (DrumView) that enables drummers and enthusiasts to view and customise drum kits to 
