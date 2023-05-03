@@ -1,0 +1,121 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
+
+[RequireComponent(typeof(ARTrackedImageManager))]
+public class placeTrackedImages : MonoBehaviour
+{
+    //reference to AR tracked image manager component
+    private ARTrackedImageManager _trackedImagesManager;
+    // List of prefabs of instatiate - these should be named the same
+    // as their corresponding 2D images in the refrence image library
+    public GameObject[] ArPrefabs;
+    public AudioClip[] ArAudioClips;
+    // public GameObject[] ArAudioClips;
+
+    // Keep dictionary array of created prefabs
+    private readonly Dictionary<string, GameObject> _instantiatedPrefabs = new Dictionary<string, GameObject>();
+    //private readonly Dictionary<string, AudioClip> _audioClipDictionary = new Dictionary<string, AudioClip>();
+
+
+    void Awake()
+    {
+        // cache a ref to the tracked image manager component
+        _trackedImagesManager = GetComponent<ARTrackedImageManager>();
+
+
+        // MIGHT BE DODGY
+        /*foreach (var clip in ArAudioClips)
+        {
+            if (!_audioClipDictionary.ContainsKey(clip.name))
+            {
+                _audioClipDictionary.Add(clip.name, clip);
+            }
+        }
+        */
+    }
+    void OnEnable()
+    {
+        //attach event handler when tracked images change
+        _trackedImagesManager.trackedImagesChanged += OnTrackedImagesChanged;
+
+    }
+    void OnDisable()
+    {
+        //remove event handler
+        _trackedImagesManager.trackedImagesChanged -= OnTrackedImagesChanged;
+    }
+
+    //event handler
+    private void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
+    {
+        //loop through all new tracked images that have been detected
+        foreach (var trackedImage in eventArgs.added)
+        {
+
+            //get name of the reference image
+            var imageName = trackedImage.referenceImage.name;
+
+            GameObject newPrefab = null; // Declare the variable before the loop
+
+            //now loop over the array of prefabs
+
+            foreach (var curPrefab in ArPrefabs)
+            {
+                int prefabIndex = Array.IndexOf(ArPrefabs, curPrefab);
+
+                // check whether this prefab matches the tracked image name,
+                // and that the prefab has not already been created
+                if (string.Compare(curPrefab.name, imageName, StringComparison.OrdinalIgnoreCase) == 0 && !_instantiatedPrefabs.ContainsKey(imageName))
+                {
+                    newPrefab = Instantiate(curPrefab, trackedImage.transform);
+                    var audioSource = newPrefab.AddComponent<AudioSource>();
+                    audioSource.clip = ArAudioClips[prefabIndex];
+                    _instantiatedPrefabs[imageName] = newPrefab;
+                }
+            }
+
+            if (newPrefab != null) // Check if a prefab was instantiated
+            {
+                newPrefab.GetComponent<AudioSource>().Play(); // Play the audio clip
+            }
+
+        }
+
+        // For all prefabs that have been created so far, set them active or not depending
+        //on whether their corresponding image is currently being tracked.
+        foreach (var trackedImage in eventArgs.updated)
+        {
+            var prefab = _instantiatedPrefabs[trackedImage.referenceImage.name];
+
+            //_instantiatedPrefabs[trackedImage.referenceImage.name]
+            //   .SetActive(trackedImage.trackingState == TrackingState.Tracking);
+
+
+            if (trackedImage.trackingState == TrackingState.Tracking)
+            {
+                //_instantiatedPrefabs[trackedImage.referenceImage.name].SetActive(true);
+                //_instantiatedPrefabs[trackedImage.referenceImage.name].GetComponent<AudioSource>().Play();
+                prefab.SetActive(true);
+            }
+            else
+            {
+                prefab.SetActive(false);
+                //_instantiatedPrefabs[trackedImage.referenceImage.name].SetActive(false);
+            }
+        }
+
+        //if the AR subsytem has given up looking for a tracked image,
+        foreach (var trackedImage in eventArgs.removed)
+        {
+            // Destroy its prefab
+            Destroy(_instantiatedPrefabs[trackedImage.referenceImage.name]);
+            // Also remove the instance from our array
+            _instantiatedPrefabs.Remove(trackedImage.referenceImage.name);
+            // Or, simply set the prefab instance to inactive
+            //_instantiatedPrefabs[trackedImage.referenceImage.name].SetActive(false);
+        }
+    }
+}
